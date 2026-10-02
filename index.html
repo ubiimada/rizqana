@@ -7,6 +7,10 @@
   
   <!-- Ini adalah "Sihir" yang membuat kita bisa pakai Tailwind tanpa terminal! -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Jembatan Firebase Klasik -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 </head>
 <body class="bg-slate-50 min-h-screen">
 
@@ -65,12 +69,12 @@
         <form onsubmit="simpanData(event)" class="space-y-5">
           <div>
             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1 block">Nominal (Rp)</label>
-            <input type="number" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-indigo-500 font-semibold text-lg" placeholder="Contoh: 50000">
+            <input id="inputNominal" type="number" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-indigo-500 font-semibold text-lg" placeholder="Contoh: 50000">
           </div>
 
           <div>
             <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1 block">Untuk Apa?</label>
-            <input type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-indigo-500" placeholder="Contoh: Belanja Sayur">
+            <input id="inputKeterangan" type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-indigo-500" placeholder="Contoh: Belanja Sayur">
           </div>
 
           <button type="submit" class="w-full mt-4 bg-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-600/30 hover:bg-indigo-700 transition-all">
@@ -105,6 +109,7 @@
   </script>
   
 <!-- Memanggil file app.js yang terpisah -->
+  <script src="firebase-config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
