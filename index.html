@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rizqana - Catatan Keuangan</title>
+  
+  <!-- Ini adalah "Sihir" yang membuat kita bisa pakai Tailwind tanpa terminal! -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen">
+
+  <div class="max-w-md mx-auto p-4 md:p-6 bg-white min-h-screen shadow-sm relative relative">
+    
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-8 pt-4">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-800">Halo, Rizqana! 👋</h1>
+        <p class="text-slate-500 text-sm">Mari atur keuangan bersama istri.</p>
+      </div>
+      <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-xl">👨</div>
+    </header>
+
+    <!-- Bagian Dompet -->
+    <section class="mb-8">
+      <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Dompet Kita</h2>
+      <div class="flex gap-4 overflow-x-auto pb-4 snap-x">
+        
+        <!-- Kartu Dompet Bersama -->
+        <div class="flex-none w-64 p-5 rounded-2xl snap-center bg-indigo-600 text-white shadow-lg shadow-indigo-200">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-2xl">🏠</span>
+            <span class="px-2 py-1 bg-white/20 rounded text-xs font-medium">Bersama</span>
+          </div>
+          <p class="text-sm mb-1 text-indigo-100">Dompet Keluarga</p>
+          <p class="text-xl font-bold tracking-tight">Rp 5.000.000</p>
+        </div>
+
+        <!-- Kartu Dompet Istri -->
+        <div class="flex-none w-64 p-5 rounded-2xl snap-center bg-slate-100 text-slate-800">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-2xl">👩</span>
+          </div>
+          <p class="text-sm mb-1 text-slate-500">Dompet Istri</p>
+          <p class="text-xl font-bold tracking-tight">Rp 2.000.000</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tombol + untuk Buka Popup -->
+    <button onclick="bukaModal()" class="fixed bottom-6 right-6 md:right-1/3 w-14 h-14 bg-indigo-600 rounded-full text-white text-3xl flex items-center justify-center shadow-lg shadow-indigo-600/30 hover:bg-indigo-700 transition-colors z-40">
+      +
+    </button>
+
+    <!-- POPUP FORM (Awalnya disembunyikan pakai class "hidden") -->
+    <div id="modalTransaksi" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm items-end md:items-center justify-center z-50 p-0 md:p-4 transition-all">
+      <div class="bg-white w-full max-w-md rounded-t-3xl md:rounded-3xl p-6 shadow-2xl">
+        
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-bold text-slate-800">Catat Transaksi</h3>
+          <button onclick="tutupModal()" class="text-slate-400 hover:text-slate-600 p-2 text-xl font-bold">×</button>
+        </div>
+
+        <form onsubmit="simpanData(event)" class="space-y-5">
+          <div>
+            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1 block">Nominal (Rp)</label>
+            <input type="number" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-indigo-500 font-semibold text-lg" placeholder="Contoh: 50000">
+          </div>
+
+          <div>
+            <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1 block">Untuk Apa?</label>
+            <input type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-indigo-500" placeholder="Contoh: Belanja Sayur">
+          </div>
+
+          <button type="submit" class="w-full mt-4 bg-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-indigo-600/30 hover:bg-indigo-700 transition-all">
+            Simpan
+          </button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Script untuk mengatur buka/tutup Popup -->
+  <script>
+    const modal = document.getElementById('modalTransaksi');
+
+    function bukaModal() {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function tutupModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function simpanData(event) {
+      event.preventDefault(); // Mencegah halaman refresh
+      alert('Hore! Transaksi berhasil dicatat.');
+      tutupModal();
+    }
+  </script>
+  
+<!-- Memanggil file app.js yang terpisah -->
+  <script src="app.js"></script>
+</body>
+</html>
